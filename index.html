@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Department Selection</title>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background: rgb(190, 222, 235);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    .back-button {
+      margin-top: 20px;
+      display: block;
+    }
+  </style>
+
+</head>
+<body>
+
+<div class="container">
+  <h1 id="main-title">Select Department</h1>
+  
+  <div id="department-section">
+    <button onclick="selectDepartment('Computer Science')">Computer Science</button>
+    <button onclick="alert('Only Computer Science is available!')">Mechanical Engineering</button>
+    <button onclick="alert('Only Computer Science is available!')">Electrical Engineering</button>
+  </div>
+
+  <div id="semester-section" class="hidden">
+    <!-- <h2>Select Semester</h2> -->
+    <button onclick="selectSemester(1)">1st Semester</button>
+    <button onclick="selectSemester(2)">2nd Semester</button>
+    <button onclick="selectSemester(3)">3rd Semester</button>
+    <button class="back-button" onclick="goBackToDepartments()">Back to Departments</button>
+  </div>
+
+  <div id="student-section" class="hidden">
+    <!-- <h2>Student Details</h2> -->
+    <ul id="student-list"></ul>
+    <button class="back-button" onclick="goBackToSemesters()">Back to Semesters</button>
+  </div>
+</div>
+
+<script>
+  function selectDepartment(department) {
+    if (department === 'Computer Science') {
+      document.getElementById('department-section').classList.add('hidden');
+      document.getElementById('semester-section').classList.remove('hidden');
+      document.getElementById('main-title').textContent = "Select Semester";
+    }
+  }
+
+  function selectSemester(semester) {
+    if (semester === 1) {
+      document.getElementById('semester-section').classList.add('hidden');
+      document.getElementById('student-section').classList.remove('hidden');
+      document.getElementById('main-title').textContent = "Student Details";
+
+      // Example students
+      const students = [
+        { name: 'Biswajit', id: 'CS202503' },
+        { name: 'QWERTY', id: 'CS202502' },
+        { name: 'ASDF', id: 'CS202501' }
+      ];
+
+      const studentList = document.getElementById('student-list');
+      studentList.innerHTML = ''; // clear previous students
+
+      students.forEach(function(student) {
+        const li = document.createElement('li');
+        li.textContent = student.name + " (ID: " + student.id + ")";
+        studentList.appendChild(li);
+      });
+
+    }
+    else if (semester === 2) {
+      document.getElementById('semester-section').classList.add('hidden');
+      document.getElementById('student-section').classList.remove('hidden');
+      document.getElementById('main-title').textContent = "Student Details";
+
+      // Example students
+      const students = [
+        { name: 'PQR', id: 'CS2025001' },
+        { name: 'ABC', id: 'CS2025002' },
+        { name: 'XYZ', id: 'CS2025003' }
+      ];
+
+      const studentList = document.getElementById('student-list');
+      studentList.innerHTML = ''; // clear previous students
+
+      students.forEach(function(student) {
+        const li = document.createElement('li');
+        li.textContent = student.name + " (ID: " + student.id + ")";
+        studentList.appendChild(li);
+      });
+
+    } 
+    else {
+      alert("Only 1st and 2nd Semester data are available in this demo.");
+    }
+  }
+
+  function goBackToDepartments() {
+    document.getElementById('semester-section').classList.add('hidden');
+    document.getElementById('department-section').classList.remove('hidden');
+    document.getElementById('main-title').textContent = "Select Department";
+  }
+
+  function goBackToSemesters() {
+    document.getElementById('student-section').classList.add('hidden');
+    document.getElementById('semester-section').classList.remove('hidden');
+    document.getElementById('main-title').textContent = "Select Semester";
+  }
+</script>
+
+</body>
+</html>
+
